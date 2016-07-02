@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 6525393c5f73d22438c081603ee04b32
+timeCreated: 1467362508
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ankle_l
+    100002: ankle_r
+    100004: arm_lower_l
+    100006: arm_lower_r
+    100008: arm_upper_l
+    100010: arm_upper_r
+    100012: Armature
+    100014: claw1_l
+    100016: claw1_r
+    100018: claw2_l
+    100020: claw2_r
+    100022: elbow_rotate_l
+    100024: elbow_rotate_r
+    100026: flamer_barrel
+    100028: foot_l
+    100030: foot_r
+    100032: fuel
+    100034: gl_mag
+    100036: hip_l
+    100038: hip_r
+    100040: lean
+    100042: Mech
+    100044: //RootNode
+    100046: minigun_barrels
+    100048: root
+    100050: rotate
+    100052: shoulder1_l
+    100054: shoulder1_r
+    100056: shoulder2_l
+    100058: shoulder2_r
+    100060: teeth
+    100062: wrist_l
+    100064: wrist_r
+    400000: ankle_l
+    400002: ankle_r
+    400004: arm_lower_l
+    400006: arm_lower_r
+    400008: arm_upper_l
+    400010: arm_upper_r
+    400012: Armature
+    400014: claw1_l
+    400016: claw1_r
+    400018: claw2_l
+    400020: claw2_r
+    400022: elbow_rotate_l
+    400024: elbow_rotate_r
+    400026: flamer_barrel
+    400028: foot_l
+    400030: foot_r
+    400032: fuel
+    400034: gl_mag
+    400036: hip_l
+    400038: hip_r
+    400040: lean
+    400042: //RootNode
+    400044: Mech
+    400046: minigun_barrels
+    400048: root
+    400050: rotate
+    400052: shoulder1_l
+    400054: shoulder1_r
+    400056: shoulder2_l
+    400058: shoulder2_r
+    400060: teeth
+    400062: wrist_l
+    400064: wrist_r
+    4300000: Mech
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Mech
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
