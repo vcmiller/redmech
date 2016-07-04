@@ -16,7 +16,15 @@ public class Mech : MonoBehaviour {
     private bool moveLeft;
     private bool moveRight;
     private Vector3 moveOrigin;
-    
+
+    private AudioSource walkSound;
+    private CooldownTimer footstepTimer;
+    private Rigidbody rigidbody;
+
+    public float maxFuel = 100;
+    private float fuel;
+
+    private Transform fuelGauge;
 
     // Use this for initialization
     void Start() {
@@ -26,7 +34,12 @@ public class Mech : MonoBehaviour {
 
         armLeft = cameraRig.parent.GetChild(1).GetComponent<Arm>();
         armRight = cameraRig.parent.GetChild(2).GetComponent<Arm>();
+        walkSound = GetComponent<AudioSource>();
+        footstepTimer = new CooldownTimer(0.7f);
+        rigidbody = GetComponent<Rigidbody>();
 
+        fuel = maxFuel;
+        fuelGauge = cameraRig.parent.FindChild("fuel");
     }
 
     // Update is called once per frame
@@ -44,7 +57,18 @@ public class Mech : MonoBehaviour {
         } else if (inputRight.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad)) {
             moveRight = false;
         }
+        
+        if (!moveLeft) {
+            armLeft.UpdateAngles(controllerLeft.transform);
+            armLeft.UpdateWeapons(controllerLeft.transform, inputLeft);
+        }
+        if (!moveRight) {
+            armRight.UpdateAngles(controllerRight.transform);
+            armRight.UpdateWeapons(controllerRight.transform, inputRight);
+        }
+    }
 
+    void FixedUpdate() {
         Vector3 moveDir = Vector3.zero;
         if (moveLeft) {
             moveDir = controllerLeft.transform.localPosition - moveOrigin;
@@ -54,44 +78,17 @@ public class Mech : MonoBehaviour {
 
         moveDir *= 3;
 
-        transform.Translate(new Vector3(0, 0, Mathf.Clamp(-moveDir.z, -1, 1)) * Time.deltaTime * 15, Space.Self);
-        transform.Rotate(0, Mathf.Clamp(-moveDir.x, -1, 1) * Time.deltaTime * 90, 0);
-
-
-        /*
-        Vector2 touchLeft = inputLeft.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
-        Vector2 touchRight = inputRight.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
-
-        if (inputLeft.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad)) {
-            lastLeft = touchLeft;
-        }
-        if (inputRight.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad)) {
-            lastRight = touchRight;
-        }
-        
-
-        if (inputLeft.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
-            transform.Translate(new Vector3(touchLeft.x, 0, touchLeft.y) * Time.deltaTime * 15, Space.Self);
-        } else if (inputLeft.GetTouch(SteamVR_Controller.ButtonMask.Touchpad)) {
-            transform.Translate(new Vector3(touchLeft.x, 0, touchLeft.y) * Time.deltaTime * 10, Space.Self);
+        if (moveDir.sqrMagnitude > 0 && footstepTimer.Use) {
+            walkSound.volume = moveDir.magnitude * 0.5f;
+            walkSound.Play();
         }
 
-        if (inputRight.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) {
-            transform.Rotate(0, touchRight.x * Time.deltaTime * 90, 0);
-        } else if (inputRight.GetTouch(SteamVR_Controller.ButtonMask.Touchpad)) {
-            transform.Rotate(0, (touchRight.x - lastRight.x) * 30, 0);
-        }
+        rigidbody.MovePosition(transform.TransformPoint(new Vector3(0, 0, Mathf.Clamp(-moveDir.z, -1, 1)) * Time.fixedDeltaTime * 15));
+        rigidbody.MoveRotation(transform.rotation * Quaternion.Euler(0, Mathf.Clamp(-moveDir.x, -1, 1) * Time.fixedDeltaTime * 90, 0));
+    }
 
-
-        lastLeft = touchLeft;
-        lastRight = touchRight;*/
-
-        if (!moveLeft) {
-            armLeft.UpdateAngles(controllerLeft.transform);
-        }
-        if (!moveRight) {
-            armRight.UpdateAngles(controllerRight.transform);
-        }
-
+    public void Damage(float damage) {
+        fuel -= damage;
+        fuelGauge.localScale = new Vector3(fuel / maxFuel, 1, 1);
     }
 }

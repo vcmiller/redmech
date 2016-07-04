@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Flamer : MonoBehaviour {
+public class Flamer : Weapon {
+    private ParticleSystem.EmissionModule flames;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start() {
+        flames = GetComponent<ParticleSystem>().emission;
+    }
+
+    void Update() {
+        GetComponent<AudioSource>().enabled = firing;
+    }
+
+    protected override void OnBeginFiring() {
+        flames.enabled = true;
+    }
+
+    protected override void OnEndFiring() {
+        flames.enabled = false;
+    }
 }

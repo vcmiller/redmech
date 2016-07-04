@@ -2,16 +2,42 @@
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
-    public bool firing;
-    public bool active;
+    protected bool firing;
+    protected bool active;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void SetFiring(bool f) {
+        if (f && !firing) {
+            firing = true;
+            OnBeginFiring();
+        } else if (!f && firing) {
+            firing = false;
+            OnEndFiring();
+        }
+    }
+
+    public void SetActive(bool a) {
+        if (a && !active) {
+            active = true;
+            OnActivate();
+        } else if (!a && active) {
+            active = false;
+            OnDeactivate();
+        }
+    }
+
+	protected virtual void OnBeginFiring() {
+
+    }
+
+    protected virtual void OnEndFiring() {
+
+    }
+
+    protected virtual void OnActivate() {
+
+    }
+
+    protected virtual void OnDeactivate() {
+
+    }
 }
