@@ -17,12 +17,7 @@ public class DamageScript : MonoBehaviour {
         if (GetComponent<CarAIControl>() != null)
             GetComponent<CarAIControl>().SetTarget(GameObject.FindGameObjectWithTag("Driver").transform);
     }
-
-    // Update is called once per frame
-    void Update() {
-        checkLiving();
-    }
-
+    
     void checkLiving() {
         if (health <= 0)
             Die();
@@ -33,6 +28,7 @@ public class DamageScript : MonoBehaviour {
         if (health < 0) {
             health = 0;
         }
+        checkLiving();
     }
 
     void Die() {

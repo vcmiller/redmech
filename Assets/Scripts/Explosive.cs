@@ -4,7 +4,7 @@ using System.Collections;
 public class Explosive : MonoBehaviour {
     public GameObject explosion;
     public float boomDmg = 300;
-    const float boomRad = 25f;
+    public float boomRad = 5f;
 
     void OnCollisionEnter(Collision col) {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
